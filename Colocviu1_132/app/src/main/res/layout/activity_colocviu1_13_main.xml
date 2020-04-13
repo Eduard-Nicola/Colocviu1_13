@@ -61,7 +61,7 @@
             android:id="@+id/buttonActivity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Naviagte to secondary activity" />
+            android:text="Navigate to secondary activity" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

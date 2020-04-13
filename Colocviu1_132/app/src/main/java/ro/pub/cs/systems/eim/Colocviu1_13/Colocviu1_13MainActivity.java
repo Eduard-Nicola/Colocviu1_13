@@ -32,11 +32,13 @@ public class Colocviu1_13MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             switch(v.getId()) {
                 case R.id.buttonActivity:
-//                    Intent intent = new Intent(getApplicationContext(), Colocviu1_245SecondaryActivity.class);
-//                    String allTermsText = allTerms.getText().toString();
-//                    intent.putExtra(Constants.ALL_TERMS, allTermsText);
-//                    startActivityForResult(intent, Constants.SECONDARY_ACTIVITY_REQUEST_CODE);
-//                    break;
+                    Intent intent = new Intent(getApplicationContext(), Colocviu1_13SecondaryActivity.class);
+                    String commands = textView.getText().toString();
+                    intent.putExtra(Constants.COMMANDS, commands);
+                    startActivityForResult(intent, Constants.SECONDARY_ACTIVITY_REQUEST_CODE);
+                    textView.setText("");
+                    numberOfClicks = 0;
+                    break;
                 default:
                     numberOfClicks++;
                     String text = textView.getText().toString();
@@ -68,6 +70,27 @@ public class Colocviu1_13MainActivity extends AppCompatActivity {
         buttonSouth.setOnClickListener(new ButtonClickListener("South"));
         buttonEast.setOnClickListener(new ButtonClickListener("East"));
         buttonWest.setOnClickListener(new ButtonClickListener("West"));
+        buttonActivity.setOnClickListener(new ButtonClickListener(""));
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
+        super.onActivityResult(requestCode, resultCode, intent);
+        if (requestCode == Constants.SECONDARY_ACTIVITY_REQUEST_CODE) {
+            if (resultCode == Constants.RESULT_REGISTER) {
+                Toast.makeText(this, "Button pressed was Register", Toast.LENGTH_LONG).show();
+            }
+            if (resultCode == Constants.RESULT_CANCEL) {
+                Toast.makeText(this, "Button pressed was Cancel", Toast.LENGTH_LONG).show();
+            }
+
+//            if (sum > Constants.SUM_THRESHOLD && serviceStatus != Constants.SERVICE_STARTED) {
+//                Intent intentService = new Intent(getApplicationContext(), Colocviu1_245Service.class);
+//                intentService.putExtra(Constants.SUM, sum);
+//                getApplicationContext().startService(intentService);
+//                serviceStatus = Constants.SERVICE_STARTED;
+//            }
+        }
     }
 
     @Override
